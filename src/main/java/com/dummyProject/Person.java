@@ -97,7 +97,7 @@ public class Person {
     boolean checkDuplicate(String firstName){
         boolean isDupliate= false;
         for(PersonInfo p : addressBook){
-            if(p.firstName==firstName)
+            if(p.firstName.equals(firstName))
                 isDupliate=true;
         }
     return isDupliate;
