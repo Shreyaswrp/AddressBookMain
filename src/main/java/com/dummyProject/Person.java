@@ -83,6 +83,15 @@ public class Person {
             default:System.out.println("Entered an  invalid choice");
         }
     }
+    //for deleting a person from address book
+    void deletePerson(){
+        System.out.println("Enter your first name");
+        String firstName=scan.nextLine();
+        for(PersonInfo p:addressBook){
+            if(p.firstName==firstName)
+                addressBook.remove(p);
+        }
+    }
 
 }
 

@@ -9,5 +9,6 @@ public class AddressBookMain {
         Person newPerson = new Person();
        newPerson.addPreson(); //a method to add a new person to address book
         newPerson.editDetails();//for editing existing information
+        newPerson.deletePerson();
     }
 }
