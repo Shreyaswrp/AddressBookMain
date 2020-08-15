@@ -93,6 +93,15 @@ public class Person {
                 addressBook.remove(p);
         }
     }
+    //checking if there's a duplicate entry
+    boolean checkDuplicate(String firstName){
+        boolean isDupliate= false;
+        for(PersonInfo p : addressBook){
+            if(p.firstName==firstName)
+                isDupliate=true;
+        }
+    return isDupliate;
+    }
 
 }
 
