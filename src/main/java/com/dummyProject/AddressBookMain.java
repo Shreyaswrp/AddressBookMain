@@ -7,6 +7,7 @@ public class AddressBookMain {
 
         System.out.println("Welcome to Address Book Program");
         Person newPerson = new Person();
-        newPerson.addPreson(); //a method to add a new person to address book
+       newPerson.addPreson(); //a method to add a new person to address book
+        newPerson.editDetails();//for editing existing information
     }
 }

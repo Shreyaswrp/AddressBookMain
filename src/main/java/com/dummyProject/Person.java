@@ -2,12 +2,18 @@ package com.dummyProject;
 
 import java.util.*;
 public class Person {
+    Scanner scan = new Scanner(System.in);
     List<PersonInfo> addressBook = new ArrayList<PersonInfo>();
+
+    private final int ADDRESS  = 1;
+    private final int CITY=2;
+    private final int STATE=3;
+    private final int ZIP=4;
+    private final int PHONENUMBER=5;
 
     //add a person to address book
     void addPreson() {
         PersonInfo person = new PersonInfo();
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter person's first name");
         person.firstName = scan.nextLine();
         System.out.println("Enter person's last name");
@@ -25,6 +31,57 @@ public class Person {
 
         addressBook.add(person);
         scan.close();
+    }
+    void editDetails(){
+        System.out.println("Enter your first name");
+        String firstName=scan.nextLine();
+        System.out.println("Choose options to edit the following:1.Address 2.city 3.state 4.zip 5.phoneNumber");
+        int choice=scan.nextInt();
+        switch(choice){
+
+            case ADDRESS:System.out.println("Enter new address"); //editing address
+                            String address=scan.nextLine();
+                            for(PersonInfo p :addressBook){
+                                if(p.firstName==firstName)
+                                    p.address=address;
+                                break;
+                            }
+                            break;
+            case CITY:System.out.println("Enter new city"); //editing city
+                        String city=scan.nextLine();
+                        for(PersonInfo p:addressBook) {
+                            if (p.firstName == firstName)
+                                p.city = city;
+                            break;
+                        }
+                        break;
+            case STATE:System.out.println("Enter new state"); //editing state
+            String state=scan.nextLine();
+            for(PersonInfo p:addressBook) {
+                if (p.firstName == firstName)
+                    p.state = state;
+                break;
+            }
+            break;
+            case ZIP:System.out.println("Enter new pincode"); //editing pincode
+            int zip=scan.nextInt();
+            for(PersonInfo p:addressBook){
+                if(p.firstName==firstName){
+                    p.zip=zip;
+                    break;
+                }
+            }
+            break;
+            case PHONENUMBER:System.out.println("Enter new phone number"); //editing phone number
+            long phoneNumber=scan.nextLong();
+            for(PersonInfo p : addressBook){
+                if(p.firstName==firstName)
+                    p.phoneNumber=phoneNumber;
+                break;
+            }
+            break;
+            default:System.out.println("Entered an  invalid choice");
+        }
     }
 
 }
