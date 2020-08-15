@@ -3,6 +3,7 @@ package com.dummyProject;
 import java.util.*;
 public class Person {
     Scanner scan = new Scanner(System.in);
+   //list to add multiple person's at a time
     List<PersonInfo> addressBook = new ArrayList<PersonInfo>();
 
     private final int ADDRESS  = 1;
