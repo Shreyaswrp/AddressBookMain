@@ -162,6 +162,28 @@ public class Person {
             break;
         }
     }
+    //ability to search all the persons in a city or state
+    void search(){
+        System.out.println("Choose 1.to search by city 2.to search by state");
+        int choice=scan.nextInt();
+        switch (choice) {
+            case 1:System.out.println("Enter city");
+            String city=scan.nextLine();
+            for(PersonInfo p:addressBook){
+                if(p.city== city)
+                    System.out.println(p.firstName+""+p.lastName);
+            }
+            break;
+            case 2:System.out.println("Enter state");
+                String state=scan.nextLine();
+                for(PersonInfo p:addressBook){
+                    if(p.state== state)
+                        System.out.println(p.firstName+""+p.lastName);
+                }
+                break;
+            default:System.out.println("Entered an invalid input");
+        }
+    }
     void sort(){
         System.out.println("Choose the following to sort.7.Based on first name 6.Based on last name 2.Based on city name 3.Based on state name 4.Based on zipcode");
         int choice=scan.nextInt();
