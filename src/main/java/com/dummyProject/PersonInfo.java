@@ -83,6 +83,30 @@ public class PersonInfo {
             return lastName1.compareTo(lastName2);
         }
     };
+    static Comparator<PersonInfo> cityNameCompare = new Comparator<PersonInfo>() {
+        public int compare(PersonInfo p1, PersonInfo p2) {
+            String city1 = p1.getCity();
+            String city2 = p2.getCity();
+            return city1.compareTo(city2);
+        }
+    };
+    static Comparator<PersonInfo> stateNameCompare = new Comparator<PersonInfo>() {
+        public int compare(PersonInfo p1, PersonInfo p2) {
+            String state1 = p1.getState();
+            String state2 = p2.getState();
+            return state1.compareTo(state2);
+        }
+    };
+    static Comparator<PersonInfo> zipCodeCompare = new Comparator<PersonInfo>() {
+        public int compare(PersonInfo p1, PersonInfo p2) {
+            Integer zip1 = p1.getZipCode();
+            Integer zip2 = p2.getZipCode();
+            return zip1.compareTo(zip2);
+        }
+    };
+
+
+
     public String toString(){
         return "firstName"+firstName+"lastName"+lastName+"city"+city+"state"+state+"zip"+zip+"phoneNumber"+phoneNumber;
     }

@@ -1,19 +1,24 @@
 package com.dummyProject;
 
 import java.util.*;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
 public class Person {
     Scanner scan = new Scanner(System.in);
     int count=0;
    //list to add multiple person's at a time
     List<PersonInfo> addressBook = new ArrayList<PersonInfo>();
+    HashMap<String,String> personCity= new HashMap<String,String>();
+    HashMap<String,String> personState= new HashMap<String,String>();
 
-    private final int ADDRESS  = 1;
+    private final int ADDRESS=1;
+    private final int PHONENUMBER=5;
     private final int CITY=2;
     private final int STATE=3;
     private final int ZIP=4;
-    private final int PHONENUMBER=5;
-    private final String FIRSTNAME="F";
-    private final String LASTNAME="L";
+    private final int FIRSTNAME=7;
+    private final int LASTNAME=6;
 
     //add a person to address book
     void addPreson() {
@@ -45,6 +50,8 @@ public class Person {
                 person.setZip(zip);
                 person.setPhoneNumber(phoneNumber);
                 addressBook.add(person);
+                personCity.put(firstName,city);
+                personState.put(firstName,state);
             }
             else
                 System.out.println("you enter duplicate entry");
@@ -58,6 +65,8 @@ public class Person {
             person.zip = zip;
             person.phoneNumber = phoneNumber;
             addressBook.add(person);
+            personCity.put(firstName,city);
+            personState.put(firstName,state);
         }
     }
     void editDetails(){
@@ -129,14 +138,47 @@ public class Person {
         }
     return isDupliate;
     }
+    //ability to view persons by their city or state name
+    void viewPerson(){
+
+        System.out.println("Choose 1.to view by city 2.to view by state");
+        int choice=scan.nextInt();
+        switch (choice) {
+            case 1:   System.out.println("Enter city name");
+            String city = scan.nextLine();
+            for (Map.Entry m : personCity.entrySet()) {
+                if (city == m.getValue())
+                    System.out.println(m.getKey());
+            }
+            break;
+            case 2: System.out.println("Enter state name");
+                String state = scan.nextLine();
+                for (Map.Entry m : personState.entrySet()) {
+                    if (state == m.getValue())
+                        System.out.println(m.getKey());
+                }
+                break;
+            default:System.out.println("Entered an invalid option");
+            break;
+        }
+    }
     void sort(){
-        System.out.println("Choose the following to sort.F.Based on first name L.Based on last name");
-        String choice=scan.nextLine();
+        System.out.println("Choose the following to sort.7.Based on first name 6.Based on last name 2.Based on city name 3.Based on state name 4.Based on zipcode");
+        int choice=scan.nextInt();
         switch(choice){
             case FIRSTNAME:Collections.sort(addressBook, PersonInfo.firstNameCompare); //sort by first name
                 break;
             case LASTNAME:
                 Collections.sort(addressBook, PersonInfo.lastNameCompare); //sort by last name
+                break;
+            case CITY:
+                Collections.sort(addressBook, PersonInfo.cityNameCompare); //sort by city name
+                break;
+            case STATE:
+                Collections.sort(addressBook, PersonInfo.stateNameCompare); //sort by last name
+                break;
+            case ZIP:
+                Collections.sort(addressBook, PersonInfo.zipCodeCompare); //sort by last name
                 break;
             default:
                 break;
