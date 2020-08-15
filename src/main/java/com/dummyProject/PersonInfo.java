@@ -2,6 +2,7 @@ package com.dummyProject;
 
 public class PersonInfo {
 
+    String address;
     String firstName;
     String lastName;
     String city;
