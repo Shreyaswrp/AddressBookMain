@@ -3,6 +3,7 @@ package com.dummyProject;
 import java.util.*;
 public class Person {
     Scanner scan = new Scanner(System.in);
+    int count=0;
    //list to add multiple person's at a time
     List<PersonInfo> addressBook = new ArrayList<PersonInfo>();
 
@@ -11,27 +12,53 @@ public class Person {
     private final int STATE=3;
     private final int ZIP=4;
     private final int PHONENUMBER=5;
+    private final String FIRSTNAME="F";
+    private final String LASTNAME="L";
 
     //add a person to address book
     void addPreson() {
+        count=count+1;
         PersonInfo person = new PersonInfo();
         System.out.println("Enter person's first name");
-        person.firstName = scan.nextLine();
+        String firstName = scan.nextLine();
         System.out.println("Enter person's last name");
-        person.lastName = scan.nextLine();
+        String lastName = scan.nextLine();
         System.out.println("Enter person's address");
-        person.address = scan.nextLine();
+        String address = scan.nextLine();
         System.out.println("Enter person's city");
-        person.city = scan.nextLine();
+        String city = scan.nextLine();
         System.out.println("Enter person's state");
-        person.state = scan.nextLine();
+        String state = scan.nextLine();
         System.out.println("Enter person's zip code");
-        person.zip = scan.nextInt();
+        int zip = scan.nextInt();
         System.out.println("Enter person's phone number");
-        person.phoneNumber = scan.nextLong();
+        long phoneNumber = scan.nextLong();
 
-        addressBook.add(person);
-        scan.close();
+        // if duplicate contact present, then don't store in address book
+        if(count > 1) {
+            if(checkDuplicate(firstName) == false) {
+                person.setFirstName(firstName);
+                person.setLastName(lastName);
+                person.setAddress(address);
+                person.setCity(city);
+                person.setState(state);
+                person.setZip(zip);
+                person.setPhoneNumber(phoneNumber);
+                addressBook.add(person);
+            }
+            else
+                System.out.println("you enter duplicate entry");
+        }
+        else if(count == 1) {
+            person.firstName = firstName;
+            person.lastName = lastName;
+            person.address = address;
+            person.city = city;
+            person.state = state;
+            person.zip = zip;
+            person.phoneNumber = phoneNumber;
+            addressBook.add(person);
+        }
     }
     void editDetails(){
         System.out.println("Enter your first name");
@@ -102,6 +129,18 @@ public class Person {
         }
     return isDupliate;
     }
-
+    void sort(){
+        System.out.println("Choose the following to sort.F.Based on first name L.Based on last name");
+        String choice=scan.nextLine();
+        switch(choice){
+            case FIRSTNAME:Collections.sort(addressBook, PersonInfo.firstNameCompare); //sort by first name
+                break;
+            case LASTNAME:
+                Collections.sort(addressBook, PersonInfo.lastNameCompare); //sort by last name
+                break;
+            default:
+                break;
+        }
+    }
 }
 

@@ -16,5 +16,6 @@ public class AddressBookMain {
         boolean isDuplicate=newPerson.checkDuplicate(firstName);
         if(isDuplicate==true)
             System.out.println("Duplicate contact exits with"+firstName +"name");
+        newPerson.sort(); //method to sort the entries alphabetically
     }
 }
